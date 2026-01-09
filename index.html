@@ -151,11 +151,32 @@
             border-left: 5px solid #667eea;
             transition: all 0.3s;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            position: relative;
         }
 
         .card:hover {
             transform: translateX(5px);
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            background: #e8f4f8;
+        }
+
+        .card.clickable::after {
+            content: "🗺️ 點擊導航";
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: #667eea;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .card.clickable:hover::after {
+            opacity: 1;
         }
 
         .card h4 {
@@ -990,6 +1011,39 @@
             section.style.transform = 'translateY(20px)';
             section.style.transition = 'opacity 0.6s, transform 0.6s';
             observer.observe(section);
+        });
+
+        // Make all cards with addresses clickable and open Google Maps
+        function extractAddress(card) {
+            const infoDiv = card.querySelector('.info');
+            if (!infoDiv) return null;
+            
+            // Find text that starts with 📍
+            const text = infoDiv.textContent;
+            const addressMatch = text.match(/📍\s*([^\n⏰💰⏱️]+)/);
+            
+            if (addressMatch && addressMatch[1]) {
+                return addressMatch[1].trim();
+            }
+            return null;
+        }
+
+        function openGoogleMaps(address) {
+            const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+            window.open(url, '_blank');
+        }
+
+        // Add click handlers to all cards with addresses
+        document.querySelectorAll('.card').forEach(card => {
+            const address = extractAddress(card);
+            if (address) {
+                card.classList.add('clickable');
+                card.addEventListener('click', () => {
+                    openGoogleMaps(address);
+                });
+                // Add tooltip
+                card.title = `點擊導航至: ${address}`;
+            }
         });
     </script>
 </body>
