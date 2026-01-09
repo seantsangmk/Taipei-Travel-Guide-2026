@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>台北之旅 | Taipei Trip Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft JhengHei', 'PingFang TC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 30px 0;
+            text-align: center;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.2em;
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #667eea;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        section {
+            background: white;
+            padding: 40px;
+            margin-bottom: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        h3 {
+            color: #764ba2;
+            font-size: 1.5em;
+            margin: 25px 0 15px;
+        }
+
+        .location-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .location-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .location-card h3 {
+            color: white;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .address {
+            font-size: 1.1em;
+            margin: 10px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .address:before {
+            content: "📍";
+            position: absolute;
+            left: 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+            transition: all 0.3s;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .card h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .card p {
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .info {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            border-left: 4px solid #2196F3;
+        }
+
+        .tip {
+            background: #fff3e0;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            border-left: 4px solid #ff9800;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            section {
+                padding: 25px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .emoji {
+            font-size: 1.2em;
+            margin-right: 5px;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #ffd89b 0%, #19547b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏙️ 台北之旅攻略 🇹🇼</h1>
+            <p class="subtitle">Taipei Travel Guide 2026</p>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#accommodation">🏨 住宿</a></li>
+                <li><a href="#nightmarkets">🌃 夜市</a></li>
+                <li><a href="#cafes">☕ 咖啡廳</a></li>
+                <li><a href="#hotpot">🍲 火鍋</a></li>
+                <li><a href="#midnightsnacks">🌙 宵夜</a></li>
+            </ul>
+        </nav>
+
+        <!-- 住宿 -->
+        <section id="accommodation">
+            <h2>🏨 我們的住宿</h2>
+            <div class="location-card" onclick="window.open('https://www.google.com/maps/search/?api=1&query=No.+10,+Lane+72,+Huayin+St,+Datong+District,+Taipei+City,+Taiwan+103', '_blank')">
+                <h3>點擊前往 Google Maps 導航</h3>
+                <div class="address">
+                    台北市大同區華陰街72巷10號<br>
+                    No. 10, Lane 72, Huayin St, Datong District, Taipei City, Taiwan 103
+                </div>
+                <div class="info" style="background: rgba(255,255,255,0.2); border-color: white; color: white; margin-top: 20px;">
+                    <strong>📱 使用說明：</strong> 點擊此卡片即可在 Google Maps 應用中打開導航
+                </div>
+            </div>
+        </section>
+
+        <!-- 夜市 -->
+        <section id="nightmarkets">
+            <h2>🌃 台北九大夜市</h2>
+            
+            <h3>1. 士林夜市 <span class="emoji">👑</span></h3>
+            <div class="info">
+                <strong>交通：</strong> 捷運劍潭站1號出口<br>
+                <strong>營業時間：</strong> 約 16:00-00:00<br>
+                <strong>特色：</strong> 台北最大、最著名的夜市，美食、購物應有盡有
+            </div>
+            <div class="grid">
+                <div class="card">
+                    <h4>🦪 忠誠號蚵仔煎</h4>
+                    <p>新鮮飽滿的蚵仔，Q彈滑嫩的地瓜粉漿與雞蛋，煎至外層微焦酥脆，淋上特製甜辣醬</p>
+                    <div class="info">📍 士林區大東路16-32號<br>⏰ 16:00-01:00</div>
+                </div>
+                <div class="card">
+                    <h4>🥟 丞祖胡椒餅</h4>
+                    <p>台北超人氣排隊美食，外皮酥脆，內餡豐富多汁</p>
+                    <div class="info">📍 士林區文林路101巷2號<br>⏰ 16:00-00:00</div>
+                </div>
+                <div class="card">
+                    <h4>🍜 阿亮麵線</h4>
+                    <p>濃稠湯頭，大腸處理得乾淨無腥味</p>
+                    <div class="info">📍 士林區大南路84號</div>
+                </div>
+                <div class="card">
+                    <h4>🌸 小鹿梅花糕</h4>
+                    <p>梅花造型小圓糕，外皮酥香，內餡柔滑香甜，搭配花束包裝超適合打卡</p>
+                    <div class="info">📍 士林區基河路1-3號<br>⏰ 16:30-22:00 (周一休)</div>
+                </div>
+            </div>
+
+            <h3>2. 饒河街夜市 <span class="emoji">🏮</span></h3>
+            <div class="info">
+                <strong>交通：</strong> 捷運松山站5號出口，步行約3分鐘<br>
+                <strong>長度：</strong> 約600米<br>
+                <strong>特色：</strong> 以小吃攤位為主，多家米其林必比登推薦店家
+            </div>
+            <div class="grid">
+                <div class="card">
+                    <h4>🥟 福州世祖胡椒餅</h4>
+                    <p>饒河夜市入口第一家！炭烤胡椒餅，外皮酥脆，內餡豐富</p>
+                    <div class="info">📍 松山區饒河街249號</div>
+                </div>
+                <div class="card">
+                    <h4>🍜 饒河街百年老店東發號</h4>
+                    <p>創立於1937年，米其林餐盤推薦。招牌蚵仔麵線、油飯和肉羹湯</p>
+                    <div class="info">📍 松山區饒河街143號<br>⏰ 08:30-00:00</div>
+                </div>
+                <div class="card">
+                    <h4>🍖 陳董藥燉排骨</h4>
+                    <p>溫補藥材湯頭，排骨肉質軟嫩，湯頭不會過於濃厚</p>
+                    <div class="info">📍 松山區饒河街160號<br>⏰ 16:30-23:00 (周二休)</div>
+                </div>
+                <div class="card">
+                    <h4>🍮 甘泉豆花</h4>
+                    <p>日本人最愛的傳統甜品，豆花細膩綿密，配料豐富</p>
+                    <div class="info">📍 松山區饒河街204號</div>
+                </div>
+            </div>
+
+            <h3>3. 寧夏夜市 <span class="emoji">🌟</span></h3>
+            <div class="info">
+                <strong>交通：</strong> 捷運中山站1號出口，往南京東路右轉寧夏路<br>
+                <strong>營業時間：</strong> 18:00-02:00<br>
+                <strong>特色：</strong> 素有「台北的胃」之稱，多家老字號經典小吃
+            </div>
+            <div class="grid">
+                <div class="card">
+                    <h4>🥔 劉芋仔蛋黃芋餅</h4>
+                    <p>米其林必比登推薦！酥脆外皮包裹綿密芋泥，加入鹹蛋黃餡料，鹹甜交錯</p>
+                </div>
+                <div class="card">
+                    <h4>🦪 圓環邊蚵仔煎</h4>
+                    <p>寧夏夜市經典老店</p>
+                </div>
+                <div class="card">
+                    <h4>🍗 豬肝榮仔</h4>
+                    <p>新鮮豬肝料理專家</p>
+                </div>
+                <div class="card">
+                    <h4>🍚 方家雞肉飯</h4>
+                    <p>古早味雞肉飯</p>
+                </div>
+            </div>
+
+            <h3>4. 臨江街夜市（通化夜市）</h3>
+            <div class="info">
+                <strong>地址：</strong> 大安區臨江街<br>
+                <strong>營業時間：</strong> 18:00-00:00<br>
+                <strong>特色：</strong> 客家美食為主
+            </div>
+            <div class="grid">
+                <div class="card">
+                    <h4>🍖 吳記排骨酥</h4>
+                    <p>排骨酥湯香氣十足</p>
+                    <div class="info">📍 大安區臨江街2號</div>
+                </div>
+                <div class="card">
+                    <h4>🍡 御品元冰火湯圓</h4>
+                    <p>米其林必比登推薦！冷熱交融的特色甜品</p>
+                    <div class="info">📍 通化街39巷50弄31號</div>
+                </div>
+            </div>
+
+            <h3>5. 南機場夜市</h3>
+            <div class="info">
+                <strong>交通：</strong> 捷運龍山寺站步行15分鐘<br>
+                <strong>特色：</strong> 當地人最愛的隱藏版美食集中地，物價實惠
+            </div>
+            <div class="grid">
+                <div class="card">
+                    <h4>🐔 阿男麻油雞</h4>
+                    <p>溫補美食，湯頭濃郁香醇</p>
+                    <div class="info">📍 中正區中華路二段311巷<br>⏰ 17:00-23:00 (周一休)</div>
+                </div>
+                <div class="card">
+                    <h4>🍗 山內雞肉</h4>
+                    <p>古早風味，白斬雞與雞肉飯，雞肉鮮嫩</p>
+                    <div class="info">📍 中正區中華路二段307巷20號旁<br>⏰ 11:00-售完 (周六休)</div>
+                </div>
+                <div class="card">
+                    <h4>🥘 臭老闆現蒸臭豆腐</h4>
+                    <p>特色蒸臭豆腐</p>
+                    <div class="info">📍 中華路2段313巷6號<br>⏰ 11:00-22:30</div>
+                </div>
+            </div>
+
+            <h3>6. 師大夜市 & 公館夜市</h3>
+            <div class="grid">
+                <div class="card">
+                    <h4>🍗 師大鹽酥雞</h4>
+                    <p>超人氣排隊美食</p>
+                    <div class="info">📍 大安區師大路39巷14號</div>
+                </div>
+                <div class="card">
+                    <h4>🥟 藍家割包</h4>
+                    <p>米其林必比登推薦！創立於1992年，醇厚滷肉與香軟割包</p>
+                </div>
+                <div class="card">
+                    <h4>🥞 雄記蔥抓餅</h4>
+                    <p>米其林必比登推薦！30多年老店</p>
+                    <div class="info">📍 公館夜市羅斯福路4段108巷2號</div>
+                </div>
+            </div>
+
+            <h3>7. 景美夜市</h3>
+            <div class="info">
+                <strong>交通：</strong> 捷運景美站2號出口<br>
+                <strong>營業時間：</strong> 18:00-00:30<br>
+                <strong>特色：</strong> 當地人日常光顧的小型夜市，有獨特的「地下夜市」氛圍
+            </div>
+
+            <h3>8. 遼寧夜市</h3>
+            <div class="info">
+                <strong>交通：</strong> 捷運南京復興站步行10分鐘<br>
+                <strong>特色：</strong> 三、四十年以上台式老字號小吃聚集地
+            </div>
+            <div class="grid">
+                <div class="card">
+                    <h4>🦪 勝利號蚵仔煎</h4>
+                    <p>來自嘉義東石的新鮮蚵仔，搭配地瓜粉漿</p>
+                </div>
+                <div class="card">
+                    <h4>🍚 正記筒仔米糕麻油腰只</h4>
+                    <p>傳統筒仔米糕</p>
+                    <div class="info">📍 朱崙街遼寧街口右邊第四攤<br>⏰ 18:00-00:00 (周日休)</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 咖啡廳 -->
+        <section id="cafes">
+            <h2>☕ 台北30間必訪咖啡廳</h2>
+            <div class="tip">
+                <strong>💡 提示：</strong> 以下咖啡廳來自 niniyeh.com 精選推薦，每間都有獨特風格與特色
+            </div>
+            
+            <div class="grid">
+                <div class="card">
+                    <h4>☕ Cộng Cà Phê 共咖啡</h4>
+                    <p>越南風情咖啡廳，復古氛圍濃厚</p>
+                </div>
+                <div class="card">
+                    <h4>🌅 早寓 At.First More</h4>
+                    <p>台北東區人氣早午餐，全天候供應，設有寵物區及親子廁所</p>
+                </div>
+                <div class="card">
+                    <h4>🧊 8%ice CAFÉ</h4>
+                    <p>文青風格冰品咖啡廳</p>
+                </div>
+                <div class="card">
+                    <h4>🌿 豆留森林 (陽明山)</h4>
+                    <p>cama coffee 陽明山分店，山林中的咖啡秘境</p>
+                </div>
+                <div class="card">
+                    <h4>🐱 幻猻家珈琲</h4>
+                    <p>貓咪主題咖啡廳</p>
+                </div>
+                <div class="card">
+                    <h4>🌸 羊毛與花・光點</h4>
+                    <p>花藝與咖啡結合的質感空間</p>
+                </div>
+                <div class="card">
+                    <h4>😇 Angel Cafe (永康街)</h4>
+                    <p>永康街長青咖啡廳，在天母也有分店</p>
+                </div>
+                <div class="card">
+                    <h4>🥐 M One Cafe (信義區)</h4>
+                    <p>貴婦早午餐之稱，橘色餐飲集團旗下</p>
+                </div>
+                <div class="card">
+                    <h4>🐝 蜂大咖啡 (萬華)</h4>
+                    <p>萬華區老字號咖啡館</p>
+                </div>
+                <div class="card">
+                    <h4>⭐ 星乃珈琲店</h4>
+                    <p>日系咖啡連鎖品牌</p>
+                </div>
+                <div class="card">
+                    <h4>☕ 湛盧咖啡 (內湖)</h4>
+                    <p>內湖區質感咖啡空間</p>
+                </div>
+                <div class="card">
+                    <h4>💪 硬咖啡</h4>
+                    <p>工業風格咖啡廳</p>
+                </div>
+            </div>
+
+            <div class="tip">
+                <strong>🗺️ 更多咖啡廳：</strong> 完整30間咖啡廳清單請參考 <a href="https://niniyeh.com/cafe-taipei/" target="_blank" style="color: #ff9800; font-weight: bold;">niniyeh.com/cafe-taipei</a>
+            </div>
+        </section>
+
+        <!-- 火鍋 -->
+        <section id="hotpot">
+            <h2>🍲 台北15間人氣火鍋推薦</h2>
+            
+            <h3>🥩 溫體牛火鍋</h3>
+            <div class="grid">
+                <div class="card">
+                    <h4>🐮 牛本色溫體牛火鍋</h4>
+                    <p>招牌溫體牛肉，新鮮現切，肉質鮮嫩</p>
+                    <div class="info">
+                        📍 台北市大安區市民大道四段78號<br>
+                        📞 02-2778-9499<br>
+                        ⏰ 周二至五 17:00-00:00、周六日 12:00-15:00/17:00-00:00 (周一休)<br>
+                        ⏱️ 用餐時間：限時90分鐘
+                    </div>
+                </div>
+                <div class="card">
+                    <h4>🦐 赤牛哥汕頭火鍋 (松江總店)</h4>
+                    <p>沙茶火鍋搭配新鮮海鮮與牛肉</p>
+                    <div class="info">
+                        📍 台北市中山區松江路313巷2號<br>
+                        📞 02-2518-1922<br>
+                        ⏰ 周一至五、日 11:30-14:00、17:00-22:00 / 周六 11:00-22:00<br>
+                        💰 單點消費，加10%服務費
+                    </div>
+                </div>
+            </div>
+
+            <h3>🌶️ 麻辣火鍋</h3>
+            <div class="grid">
+                <div class="card">
+                    <h4>🔥 滿堂紅頂級麻辣鴛鴦鍋 (松江店)</h4>
+                    <p>吃到飽麻辣火鍋，食材豐富多樣</p>
+                    <div class="info">
+                        📍 台北市中山區松江路185號2樓<br>
+                        📞 02-2517-0889<br>
+                        ⏰ 周一至五 11:30-22:30、周六日及假日 11:30-23:30<br>
+                        💰 吃到飽，加10%服務費
+                    </div>
+                </div>
+                <div class="card">
+                    <h4>🌶️ 詹記麻辣火鍋 (敦南店)</h4>
+                    <p>懷舊台式復古裝潢，高品質麻辣鍋底，必吃鴨血和豆腐</p>
+                    <div class="info">
+                        📍 台北市和平東路3段60號1樓<br>
+                        📞 02-2377-7799<br>
+                        ⏰ 周一至日 12:00-14:30、17:00-01:00<br>
+                        💰 最低消費 NT$930/桌，單點，加10%服務費<br>
+                        ⏱️ 限時120分鐘
+                    </div>
+                </div>
+                <div class="card">
+                    <h4>🍜 無老鍋 (西門町店)</h4>
+                    <p>鼎王集團旗下，中國風裝潢，服務一流。招牌鴛鴦鍋</p>
+                    <div class="info">
+                        📍 台北市中正區中華路一段55號2樓<br>
+                        📞 02-2388-8358<br>
+                        ⏰ 周一至日 11:30-02:00<br>
+                        💰 最低消費 NT$650/桌，單點，加10%服務費<br>
+                        ⏱️ 限時90分鐘
+                    </div>
+                </div>
+                <div class="card">
+                    <h4>🎉 新馬辣經典麻辣火鍋餐廳 (中山店)</h4>
+                    <p>吃到飽麻辣鍋，8種頂級肉品、北海道干貝、哈根達斯冰淇淋</p>
+                    <div class="info">
+                        📍 台北市中山區南京東路一段2號2樓<br>
+                        📞 02-2100-2225<br>
+                        ⏰ 周一至日 11:30-00:00<br>
+                        💰 成人：午餐 周一至五 NT$698、晚餐 NT$798，加10%服務費<br>
+                        ⏱️ 限時120分鐘
+                    </div>
+                </div>
+            </div>
+
+            <h3>🍖 特色火鍋</h3>
+            <div class="grid">
+                <div class="card">
+                    <h4>🏇 蒙古紅蒙古火鍋 (蘆洲店)</h4>
+                    <p>吃到飽蒙古風味火鍋</p>
+                    <div class="info">
+                        📍 台北新北市蘆洲區長榮路694號<br>
+                        📞 02-8286-8336<br>
+                        ⏰ 11:00-22:00、周五至六 11:00-23:00<br>
+                        💰 成人：平日午餐 NT$635、平日晚餐或假日 NT$727，加10%服務費<br>
+                        ⏱️ 限時110分鐘
+                    </div>
+                </div>
+                <div class="card">
+                    <h4>🎊 囍聚精緻鍋物</h4>
+                    <p>精緻火鍋，食材新鮮高級</p>
+                    <div class="info">
+                        📍 台北市大安區光復南路72巷7弄17號<br>
+                        📞 02-8773-8335<br>
+                        ⏰ 周一至五 17:30-00:00 / 周六日 11:30-14:30、17:30-00:00<br>
+                        💰 單點鍋底及菜色，加10%服務費
+                    </div>
+                </div>
+                <div class="card">
+                    <h4>🌿 荖子鍋 (台北家樂福重慶店)</h4>
+                    <p>吃到飽，11種湯頭選擇，雅緻空間</p>
+                    <div class="info">
+                        📍 台北市大同區重慶北路二段171號（重慶家樂福1樓）<br>
+                        📞 02-2553-1450<br>
+                        ⏰ 周一至日 11:00-22:00
+                    </div>
+                </div>
+                <div class="card">
+                    <h4>🐟 HI-Q鱻食餐廳</h4>
+                    <p>全台唯一精品石斑鍋物餐廳，褐藻主題餐點，寵物友善</p>
+                    <div class="info">
+                        📍 台北市松山區八德路四段123-1號B1樓<br>
+                        📞 02-2747-0028 #6<br>
+                        ⏰ 周二至日 11:30-14:30 / 17:30-21:30 (周一休)<br>
+                        💰 最低消費 NT$220/人，8歲以下或120cm以下免低消
+                    </div>
+                </div>
+                <div class="card">
+                    <h4>🎭 尬鍋 (台北西門店)</h4>
+                    <p>台式火鍋，食材新鮮多樣</p>
+                    <div class="info">
+                        📍 台北市萬華區中華路一段78號<br>
+                        📞 02-2388-2252<br>
+                        ⏰ 周一至日 11:30-00:00<br>
+                        💰 單點消費，加10%服務費
+                    </div>
+                </div>
+                <div class="card">
+                    <h4>🍵 茶冉｜茶湯火鍋專門店</h4>
+                    <p>茶湯火鍋專門店，台灣高山青茶湯底 & 日式蔬果湯底，無味精</p>
+                    <div class="info">
+                        📍 台北市大安區復興南路一段107巷25-3號<br>
+                        📞 02-2775-5066<br>
+                        ⏰ 周一至日 17:00-21:30
+                    </div>
+                </div>
+                <div class="card">
+                    <h4>🐑 山羊城全羊館羊肉爐總店</h4>
+                    <p>三十多年老字號，四款羊肉爐：紅燒、蔬菜、麻辣、泡菜</p>
+                    <div class="info">
+                        📍 台北新北市三重區重陽路二段25號<br>
+                        📞 02-8982-8986<br>
+                        ⏰ 周一至日 16:00-01:00<br>
+                        💰 單點消費
+                    </div>
+                </div>
+                <div class="card">
+                    <h4>⏰ 22:02火鍋。樂活 (八德店)</h4>
+                    <p>精緻火鍋，環境舒適</p>
+                    <div class="info">
+                        📍 台北市松山區八德路四段17巷7號<br>
+                        📞 02-2748-2202<br>
+                        ⏰ 周一至五 11:00-14:30 / 17:00-22:00；周六日 11:00-22:00<br>
+                        💰 最低消費 NT$650/桌，單點，加10%服務費
+                    </div>
+                </div>
+                <div class="card">
+                    <h4>🚪 六扇門時尚湯鍋</h4>
+                    <p>全台連鎖平價火鍋，數十種湯頭，一人一鍋</p>
+                    <div class="info">
+                        ⏰ 11:00-00:00<br>
+                        💰 最低消費 NT$80/人，不收服務費
+                    </div>
+                </div>
+            </div>
+
+            <div class="tip">
+                <strong>💡 訂位建議：</strong> 熱門火鍋店建議提前電話或網路訂位，尤其是週末及晚餐時段
+            </div>
+        </section>
+
+        <!-- 宵夜 -->
+        <section id="midnightsnacks">
+            <h2>🌙 台北宵夜美食30選</h2>
+            <div class="tip">
+                <strong>🌃 夜貓族必備：</strong> 精選深夜食堂 & 24小時小吃推薦
+            </div>
+
+            <h3>萬華區宵夜</h3>
+            <div class="grid">
+                <div class="card">
+                    <h4>🍜 西門麵店</h4>
+                    <p>飄香超過60年，幾乎整週24小時營業</p>
+                    <div class="info">
+                        📍 台北市萬華區內江街41號<br>
+                        ⏰ 周二至六 24小時，周日至一 00:00-05:00
+                    </div>
+                </div>
+                <div class="card">
+                    <h4>🍢 大村武串燒居酒屋</h4>
+                    <p>日式串燒居酒屋</p>
+                    <div class="info">
+                        📍 台北市萬華區漢口街二段83巷2號<br>
+                        ⏰ 18:00-01:00
+                    </div>
+                </div>
+                <div class="card">
+                    <h4>🍜 富宏牛肉麵</h4>
+                    <p>24小時營業的牛肉麵店</p>
+                    <div class="info">
+                        📍 台北市萬華區洛陽街67-69號<br>
+                        ⏰ 24小時
+                    </div>
+                </div>
+            </div>
+
+            <h3>公館宵夜</h3>
+            <div class="grid">
+                <div class="card">
+                    <h4>🍢 狗一下居酒屋食堂</h4>
+                    <p>馬辣集團旗下居酒屋，營業至凌晨2點，不收服務費</p>
+                    <div class="info">
+                        📍 台北市中正區汀州路三段271號<br>
+                        ⏰ 11:30-14:30、17:00-02:00
+                    </div>
+                </div>
+                <div class="card">
+                    <h4>🍱 純愛小吃部</h4>
+                    <p>台式小吃部</p>
+                    <div class="info">
+                        📍 台北市中正區汀州路三段104巷9號<br>
+                        ⏰ 17:30-00:00 (周一休)
+                    </div>
+                </div>
+                <div class="card">
+                    <h4>🍢 黑丸關東煮</h4>
+                    <p>溫暖的關東煮</p>
+                    <div class="info">
+                        📍 台北市中正區羅斯福路四段136巷1弄7號<br>
+                        ⏰ 16:30-23:30
+                    </div>
+                </div>
+            </div>
+
+            <h3>大安區宵夜</h3>
+            <div class="grid">
+                <div class="card">
+                    <h4>🍜 牛肉麵．雞湯</h4>
+                    <p>藝人邱小三開設，紅燒牛肉麵 & 剝皮辣椒雞湯，營業至凌晨4點</p>
+                    <div class="info">
+                        📍 台北市大安區敦化南路1段164號<br>
+                        ⏰ 18:00-03:30
+                    </div>
+                </div>
+                <div class="card">
+                    <h4>🐟 龍泉深海鮮魚湯</h4>
+                    <p>新鮮魚湯</p>
+                    <div class="info">
+                        📍 台北市大安區師大路117巷7號<br>
+                        ⏰ 16:00-00:00
+                    </div>
+                </div>
+                <div class="card">
+                    <h4>🥛 老漿家 OHsoymilk</h4>
+                    <p>24小時豆漿店，飯糰、河粉蛋餅、燒餅，霓虹文青風</p>
+                    <div class="info">
+                        📍 台北市大安區延吉街110號1F<br>
+                        ⏰ 24小時 (除周三 00:00-14:00、18:00-23:30)
+                    </div>
+                </div>
+            </div>
+
+            <h3>信義區宵夜</h3>
+            <div class="grid">
+                <div class="card">
+                    <h4>🦆 鴨肉謝（30巷）</h4>
+                    <p>信義區巷仔內宵夜霸主</p>
+                    <div class="info">
+                        📍 台北市信義區永吉路30巷168弄2號<br>
+                        ⏰ 17:00-01:30 (周日休)
+                    </div>
+                </div>
+                <div class="card">
+                    <h4>🎵 So Taipei 趖</h4>
+                    <p>深夜餐酒館</p>
+                    <div class="info">
+                        📍 台北市信義區基隆路二段71號<br>
+                        ⏰ 20:00-04:00 (周二休)
+                    </div>
+                </div>
+                <div class="card">
+                    <h4>🍜 小小麥</h4>
+                    <p>台日式融合料理，麻奶明太子鮮貝烏龍拌麵、濃咖哩湯烏龍麵</p>
+                    <div class="info">
+                        📍 台北市信義區永吉路30巷75號<br>
+                        ⏰ 11:30-14:00、17:30-00:30
+                    </div>
+                </div>
+            </div>
+
+            <h3>中山區宵夜</h3>
+            <div class="grid">
+                <div class="card">
+                    <h4>🍢 hiboru 嗨波嚕</h4>
+                    <p>日式居酒屋</p>
+                    <div class="info">
+                        📍 台北市中山區建國北路一段20巷2號<br>
+                        ⏰ 19:00-02:00 (周日休)
+                    </div>
+                </div>
+                <div class="card">
+                    <h4>🐔 雞湯榮麵食館</h4>
+                    <p>雞湯麵食專賣</p>
+                    <div class="info">
+                        📍 台北市中山區錦州街14號<br>
+                        ⏰ 17:00-00:00 (周一休)
+                    </div>
+                </div>
+                <div class="card">
+                    <h4>🍚 胖老闆誠意肉粥</h4>
+                    <p>深夜10點起跑、只開3小時！招牌竹筍粥 NT$40-70，熱炸排骨、爆漿芋泥球</p>
+                    <div class="info">
+                        📍 台北市中山區長春路89-3號<br>
+                        ⏰ 21:00-01:00 (周日、一休)
+                    </div>
+                </div>
+            </div>
+
+            <h3>台北車站宵夜</h3>
+            <div class="grid">
+                <div class="card">
+                    <h4>🍜 大狗麵線</h4>
+                    <p>補習街學生記憶中的味道，早上7點營業至晚上11點</p>
+                    <div class="info">
+                        📍 台北市中正區南陽街13號<br>
+                        ⏰ 07:00-23:00
+                    </div>
+                </div>
+                <div class="card">
+                    <h4>🍢 竹崎居酒食堂</h4>
+                    <p>台北車站地下街Y9出口旁，溫馨日式風格</p>
+                    <div class="info">
+                        📍 台北市大同區鄭州路3之2號<br>
+                        ⏰ 18:00-01:00 (周日休)
+                    </div>
+                </div>
+                <div class="card">
+                    <h4>☕ 附近咖啡</h4>
+                    <p>深夜咖啡廳，可工作可小酌，有插座和Wi-Fi</p>
+                    <div class="info">
+                        📍 台北市大同區長安西路78巷3弄4-1號<br>
+                        ⏰ 10:00-00:00
+                    </div>
+                </div>
+            </div>
+
+            <h3>北投宵夜</h3>
+            <div class="grid">
+                <div class="card">
+                    <h4>🍱 阿亮小吃</h4>
+                    <p>雞腿飯、排骨飯、乾麵、豬血湯，週一至五24小時</p>
+                    <div class="info">
+                        📍 台北市北投區承德路七段98號<br>
+                        ⏰ 周一至五 24小時，周六 00:00-08:00，周日 10:00-00:00
+                    </div>
+                </div>
+                <div class="card">
+                    <h4>🍖 滷三塊五花肉飯</h4>
+                    <p>滷到透亮的五花肉，肥瘦均勻，入口即化</p>
+                    <div class="info">
+                        📍 台北市北投區承德路七段100號<br>
+                        ⏰ 17:00-02:00 (周日休)
+                    </div>
+                </div>
+            </div>
+
+            <h3>士林宵夜</h3>
+            <div class="grid">
+                <div class="card">
+                    <h4>🔥 士林夜市深夜流氓熱炒</h4>
+                    <p>凌晨1點才開始營業！街頭派對般的熱炒</p>
+                    <div class="info">
+                        📍 台北市士林區大東路16號<br>
+                        ⏰ 01:00-04:30 (周二休)
+                    </div>
+                </div>
+                <div class="card">
+                    <h4>🥘 幸福清粥小菜館</h4>
+                    <p>白天是理髮廳，晚上是溫馨宵夜場</p>
+                    <div class="info">
+                        📍 台北市士林區延平北路五段163巷29弄8號<br>
+                        ⏰ 17:00-01:00 (周日、三休)
+                    </div>
+                </div>
+                <div class="card">
+                    <h4>🥘 大俠請留步</h4>
+                    <p>大俠滷味拼盤，配特製辣醬</p>
+                    <div class="info">
+                        📍 台北市士林區文林路188號<br>
+                        ⏰ 17:00-00:00 (周一休)
+                    </div>
+                </div>
+            </div>
+
+            <h3>南港宵夜</h3>
+            <div class="grid">
+                <div class="card">
+                    <h4>🍣 陶膳日式料理</h4>
+                    <p>營業至半夜12點的日式料理</p>
+                    <div class="info">
+                        📍 台北市南港區園區街20號1樓<br>
+                        ⏰ 17:30-00:00 (周一休)
+                    </div>
+                </div>
+                <div class="card">
+                    <h4>🍲 辛隱</h4>
+                    <p>火鍋餐廳</p>
+                    <div class="info">
+                        📍 台北市南港區興中路12巷9號1-2樓<br>
+                        ⏰ 11:00-14:00、17:00-00:00
+                    </div>
+                </div>
+                <div class="card">
+                    <h4>🦆 阿春鵝肉</h4>
+                    <p>新鮮鵝肉料理</p>
+                    <div class="info">
+                        📍 台北市南港區研究院路二段5巷3號<br>
+                        ⏰ 16:30-23:00 (周三休)
+                    </div>
+                </div>
+            </div>
+
+            <h3>松山宵夜</h3>
+            <div class="grid">
+                <div class="card">
+                    <h4>🚗 司機俱樂部</h4>
+                    <p>炒飯、炒牛肉等台式料理</p>
+                    <div class="info">
+                        📍 台北市松山區南京東路五段399之2號<br>
+                        ⏰ 11:00-14:00、17:30-01:30 (周日休)
+                    </div>
+                </div>
+                <div class="card">
+                    <h4>🍜 東引小吃店</h4>
+                    <p>營業至凌晨4點</p>
+                    <div class="info">
+                        📍 台北市松山區南京東路五段291巷20弄3-2號<br>
+                        ⏰ 10:00-04:00
+                    </div>
+                </div>
+                <div class="card">
+                    <h4>🍜 柳家涼麵</h4>
+                    <p>半夜9:30才開始營業！炸醬涼麵帶蒜香</p>
+                    <div class="info">
+                        📍 台北市松山區光復南路21之1號<br>
+                        ⏰ 21:30-04:30 (周日休)
+                    </div>
+                </div>
+            </div>
+
+            <div class="info">
+                <strong>💡 宵夜小貼士：</strong>
+                <ul style="margin-top: 10px; padding-left: 20px;">
+                    <li>多數24小時店家仍以現金為主，建議帶些現金</li>
+                    <li>深夜熱門店家仍可能需要排隊</li>
+                    <li>部分店家營業時間可能隨時調整，建議出發前確認</li>
+                </ul>
+            </div>
+        </section>
+
+        <footer>
+            <p>🌟 祝你有個美好的台北之旅！🌟</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">Created with ❤️ for Taipei Trip 2026</p>
+        </footer>
+    </div>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s, transform 0.6s';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
